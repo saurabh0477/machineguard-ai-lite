@@ -30,7 +30,7 @@ from train_model import (
 )
 
 # ---------------------------------------------------------
-# Streamlit Page Configuration & Industrial Styling
+# Streamlit Page Configuration & Industrial Dark Navy Theme
 # ---------------------------------------------------------
 st.set_page_config(
     page_title="MachineGuard AI Lite | Predictive Maintenance",
@@ -39,20 +39,36 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Custom Industrial CSS theme (Dark Navy Sidebar, Light Slate Background, Blue Accents, Crisp Cards)
+# Custom Industrial Dark Navy CSS theme:
+# - Dark navy background (#0B132B / #0F172A)
+# - White primary text (#FFFFFF / #F8FAFC)
+# - Light grey secondary text (#94A3B8 / #CBD5E1)
+# - Bright blue accents (#3B82F6 / #60A5FA / #38BDF8)
+# - Accessible contrast for labels, inputs, selectboxes, cards, badges, and alerts
 st.markdown(
     """
     <style>
-    /* Global font & background adjustments */
+    /* Global App Background & Base Typography */
     .stApp {
-        background-color: #F8FAFC;
-        color: #1E293B;
+        background-color: #0B132B !important;
+        color: #F8FAFC !important;
     }
     
-    /* Dark Navy Sidebar Styling */
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        color: #FFFFFF !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.01em;
+    }
+
+    p, span, label, div {
+        color: #F1F5F9;
+    }
+
+    /* Sidebar Dark Navy Styling */
     section[data-testid="stSidebar"] {
-        background-color: #0F172A !important;
-        color: #F8FAFC !important;
+        background-color: #080D1A !important;
+        border-right: 1px solid #1E293B !important;
     }
     section[data-testid="stSidebar"] h1, 
     section[data-testid="stSidebar"] h2, 
@@ -60,81 +76,204 @@ st.markdown(
     section[data-testid="stSidebar"] span, 
     section[data-testid="stSidebar"] label,
     section[data-testid="stSidebar"] p {
-        color: #F1F5F9 !important;
+        color: #F8FAFC !important;
     }
-    
-    /* Card containers */
+    section[data-testid="stSidebar"] .stRadio label {
+        color: #E2E8F0 !important;
+    }
+
+    /* Metric Cards */
     .metric-card {
-        background: #FFFFFF;
+        background: #131E3A !important;
         border-radius: 10px;
-        padding: 1.2rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-        border: 1px solid #E2E8F0;
+        padding: 1.25rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+        border: 1px solid #233554 !important;
         margin-bottom: 1rem;
     }
     .metric-title {
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         font-weight: 600;
         text-transform: uppercase;
-        color: #64748B;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.3rem;
+        color: #94A3B8 !important;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.35rem;
     }
     .metric-value {
-        font-size: 1.8rem;
+        font-size: 1.85rem;
         font-weight: 700;
-        color: #0F172A;
+        color: #FFFFFF !important;
         line-height: 1.2;
     }
     .metric-sub {
-        font-size: 0.8rem;
-        color: #64748B;
-        margin-top: 0.3rem;
+        font-size: 0.82rem;
+        color: #CBD5E1 !important;
+        margin-top: 0.35rem;
     }
 
-    /* Risk Badges */
+    /* High-Contrast Accessible Risk Badges */
     .badge-low {
-        background-color: #DCFCE7;
-        color: #166534;
-        padding: 4px 12px;
+        background-color: #064E3B !important;
+        color: #34D399 !important;
+        border: 1px solid #059669 !important;
+        padding: 5px 14px;
         border-radius: 9999px;
-        font-weight: 600;
-        font-size: 0.9rem;
+        font-weight: 700;
+        font-size: 0.88rem;
         display: inline-block;
+        letter-spacing: 0.04em;
     }
     .badge-medium {
-        background-color: #FEF3C7;
-        color: #92400E;
-        padding: 4px 12px;
+        background-color: #78350F !important;
+        color: #FCD34D !important;
+        border: 1px solid #D97706 !important;
+        padding: 5px 14px;
         border-radius: 9999px;
-        font-weight: 600;
-        font-size: 0.9rem;
+        font-weight: 700;
+        font-size: 0.88rem;
         display: inline-block;
+        letter-spacing: 0.04em;
     }
     .badge-high {
-        background-color: #FEE2E2;
-        color: #991B1B;
-        padding: 4px 12px;
+        background-color: #7F1D1D !important;
+        color: #FCA5A5 !important;
+        border: 1px solid #DC2626 !important;
+        padding: 5px 14px;
         border-radius: 9999px;
-        font-weight: 600;
-        font-size: 0.9rem;
+        font-weight: 700;
+        font-size: 0.88rem;
         display: inline-block;
+        letter-spacing: 0.04em;
     }
 
-    /* Notice banner */
+    /* Informational & Governance Notice Banner */
     .disclaimer-banner {
-        background-color: #EFF6FF;
-        border-left: 4px solid #3B82F6;
-        padding: 0.75rem 1rem;
-        border-radius: 4px;
-        font-size: 0.85rem;
-        color: #1E3A8A;
-        margin-bottom: 1rem;
+        background-color: #112240 !important;
+        border-left: 4px solid #38BDF8 !important;
+        padding: 0.85rem 1.15rem;
+        border-radius: 6px;
+        font-size: 0.88rem;
+        color: #E0F2FE !important;
+        margin-bottom: 1.25rem;
+        border-top: 1px solid #1E3A8A;
+        border-right: 1px solid #1E3A8A;
+        border-bottom: 1px solid #1E3A8A;
+        line-height: 1.5;
+    }
+    .disclaimer-banner b {
+        color: #38BDF8 !important;
+    }
+
+    /* Input Fields, Selectboxes, and Number Steppers */
+    div[data-baseweb="select"] > div,
+    div[data-baseweb="input"] > div,
+    .stTextInput > div > div > input,
+    .stNumberInput > div > div > input {
+        background-color: #131E3A !important;
+        color: #FFFFFF !important;
+        border: 1px solid #334155 !important;
+        border-radius: 6px !important;
+    }
+    div[data-baseweb="select"] > div:hover,
+    div[data-baseweb="input"] > div:hover,
+    .stNumberInput input:hover {
+        border-color: #3B82F6 !important;
+    }
+    div[data-baseweb="select"]:focus-within > div,
+    div[data-baseweb="input"]:focus-within > div,
+    .stNumberInput input:focus {
+        border-color: #60A5FA !important;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
+    }
+
+    /* Selectbox dropdown menu popup items */
+    ul[data-baseweb="menu"] {
+        background-color: #131E3A !important;
+        border: 1px solid #334155 !important;
+    }
+    li[data-baseweb="menu-item"] {
+        color: #F8FAFC !important;
+    }
+    li[data-baseweb="menu-item"]:hover {
+        background-color: #1E293B !important;
+        color: #38BDF8 !important;
+    }
+
+    /* Form labels & Captions */
+    .stWidgetLabel label,
+    div[data-testid="stWidgetLabel"] label {
+        color: #F1F5F9 !important;
+        font-weight: 600 !important;
+        font-size: 0.9rem !important;
+    }
+    .stCaption, small, .st-emotion-cache-16idsys p {
+        color: #94A3B8 !important;
+    }
+
+    /* Sliders */
+    .stSlider > div > div > div > div {
+        color: #F8FAFC !important;
+    }
+
+    /* Buttons */
+    .stButton > button {
+        background-color: #2563EB !important;
+        color: #FFFFFF !important;
+        font-weight: 600 !important;
+        border: 1px solid #3B82F6 !important;
+        border-radius: 6px !important;
+        transition: all 0.2s ease-in-out !important;
+    }
+    .stButton > button:hover {
+        background-color: #1D4ED8 !important;
+        border-color: #60A5FA !important;
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.4) !important;
+    }
+
+    /* Horizontal Rules */
+    hr {
+        border: 0 !important;
+        border-top: 1px solid #1E293B !important;
+        margin: 1.5rem 0 !important;
+    }
+
+    /* Actionable Box in Predictor */
+    .action-box {
+        background: #131E3A !important;
+        padding: 1.25rem;
+        border-radius: 8px;
+        margin-bottom: 1.25rem;
+        border: 1px solid #233554 !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Scenario Lab Configuration List */
+    .scenario-list {
+        font-size: 0.88rem;
+        color: #E2E8F0 !important;
+        line-height: 1.8;
+    }
+    .scenario-list b {
+        color: #94A3B8 !important;
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
+
+# Plotly Shared Dark Navy Layout Configuration (Figure-level properties)
+PLOTLY_DARK_THEME = dict(
+    plot_bgcolor="#131E3A",
+    paper_bgcolor="#131E3A",
+    font=dict(color="#F8FAFC", family="sans-serif", size=12),
+    legend=dict(
+        font=dict(color="#F8FAFC"),
+        bgcolor="rgba(19, 30, 58, 0.8)",
+        bordercolor="#233554",
+        borderwidth=1,
+    ),
+)
+
 
 
 # ---------------------------------------------------------
@@ -158,7 +297,7 @@ def load_default_dataset():
             if extracted_path != CSV_PATH:
                 os.replace(extracted_path, CSV_PATH)
         return pd.read_csv(CSV_PATH)
-    except Exception as e:
+    except Exception:
         return None
 
 
@@ -265,7 +404,7 @@ with st.sidebar:
     st.markdown(
         """
         <div style="font-size:0.75rem; color:#94A3B8; line-height:1.4;">
-        <b>Notice:</b> Demonstration model trained on synthetic machine telemetry for hackathon evaluation.
+        <b style="color:#CBD5E1;">Notice:</b> Demonstration model trained on synthetic machine telemetry for hackathon evaluation.
         Not certified for direct industrial hardware shutdown.
         </div>
         """,
@@ -317,7 +456,6 @@ def generate_plain_english_explanation(record: dict, prob: float):
     torque = record.get("Torque [Nm]", 0)
     rpm = record.get("Rotational speed [rpm]", 0)
     temp_diff = record.get("Temp difference [K]", 0)
-    air_temp = record.get("Air temperature [K]", 0)
     power = record.get("Power [W]", 0)
 
     # Tool wear threshold insight (AI4I dataset tool failure typically occurs > 200 min)
@@ -355,24 +493,27 @@ def generate_plain_english_explanation(record: dict, prob: float):
 
 
 def suggest_next_step(risk_label: str):
-    """Industrial recommendation based on risk category."""
+    """Industrial recommendation based on risk category with accessible high-contrast colors."""
     if risk_label == "HIGH":
         return {
             "action": "HALT & DISPATCH MAINTENANCE",
             "detail": "Perform immediate diagnostic lockout. Replace cutting tool insert, verify spindle lubrication, and inspect motor drive train.",
-            "color": "#DC2626",
+            "color": "#EF4444",
+            "border_color": "#DC2626",
         }
     elif risk_label == "MEDIUM":
         return {
             "action": "INCREASE MONITORING FREQUENCY",
             "detail": "Flag machine for prioritized inspection during the next shift change. Reduce feed rate or rotational speed if possible to mitigate strain.",
-            "color": "#D97706",
+            "color": "#F59E0B",
+            "border_color": "#D97706",
         }
     else:
         return {
             "action": "PROCEED WITH ROUTINE OPERATION",
             "detail": "Machine is running reliably. Maintain scheduled preventive maintenance intervals and standard lubrication checks.",
-            "color": "#16A34A",
+            "color": "#10B981",
+            "border_color": "#059669",
         }
 
 
@@ -430,7 +571,7 @@ if nav_option == "📊 Fleet Overview":
                 f"""
                 <div class="metric-card">
                     <div class="metric-title">Avg Operating Torque</div>
-                    <div class="metric-value">{avg_torque:.1f} <span style="font-size:1rem;color:#64748B;">Nm</span></div>
+                    <div class="metric-value">{avg_torque:.1f} <span style="font-size:1.05rem;color:#94A3B8;">Nm</span></div>
                     <div class="metric-sub">Speed Avg: {loaded_df['Rotational speed [rpm]'].mean():.0f} RPM</div>
                 </div>
                 """,
@@ -441,7 +582,7 @@ if nav_option == "📊 Fleet Overview":
                 f"""
                 <div class="metric-card">
                     <div class="metric-title">Avg Tool Wear</div>
-                    <div class="metric-value">{avg_wear:.0f} <span style="font-size:1rem;color:#64748B;">min</span></div>
+                    <div class="metric-value">{avg_wear:.0f} <span style="font-size:1.05rem;color:#94A3B8;">min</span></div>
                     <div class="metric-sub">Air Temp Avg: {avg_air_temp:.1f} K ({avg_air_temp - 273.15:.1f}°C)</div>
                 </div>
                 """,
@@ -459,17 +600,18 @@ if nav_option == "📊 Fleet Overview":
                 x="Rotational speed [rpm]",
                 y="Torque [Nm]",
                 color=loaded_df[TARGET_COL].map({0: "Normal", 1: "Failure"}),
-                color_discrete_map={"Normal": "#3B82F6", "Failure": "#EF4444"},
+                color_discrete_map={"Normal": "#38BDF8", "Failure": "#EF4444"},
                 title="Torque vs. Rotational Speed (Historical Failure Clusters)",
-                opacity=0.7,
+                opacity=0.75,
                 hover_data=["Type", "Tool wear [min]"],
             )
             fig_scatter.update_layout(
-                plot_bgcolor="#FFFFFF",
-                paper_bgcolor="#FFFFFF",
+                **PLOTLY_DARK_THEME,
                 legend_title_text="Status",
-                margin=dict(l=20, r=20, t=40, b=20),
+                margin=dict(l=20, r=20, t=45, b=20),
             )
+            fig_scatter.update_xaxes(gridcolor="#233554", zerolinecolor="#334155", linecolor="#334155", tickfont=dict(color="#CBD5E1"))
+            fig_scatter.update_yaxes(gridcolor="#233554", zerolinecolor="#334155", linecolor="#334155", tickfont=dict(color="#CBD5E1"))
             st.plotly_chart(fig_scatter, use_container_width=True)
 
         with c_chart2:
@@ -488,15 +630,17 @@ if nav_option == "📊 Fleet Overview":
                 x="Type",
                 y="Failure Rate (%)",
                 color="Type",
-                color_discrete_sequence=["#2563EB", "#0284C7", "#38BDF8"],
+                color_discrete_sequence=["#3B82F6", "#0284C7", "#38BDF8"],
                 title="Failure Rate by Machine Variant (L: Low, M: Med, H: High)",
                 text_auto=".2f",
             )
             fig_bar.update_layout(
-                plot_bgcolor="#FFFFFF",
-                paper_bgcolor="#FFFFFF",
-                margin=dict(l=20, r=20, t=40, b=20),
+                **PLOTLY_DARK_THEME,
+                margin=dict(l=20, r=20, t=45, b=20),
             )
+            fig_bar.update_xaxes(gridcolor="#233554", zerolinecolor="#334155", linecolor="#334155", tickfont=dict(color="#CBD5E1"))
+            fig_bar.update_yaxes(gridcolor="#233554", zerolinecolor="#334155", linecolor="#334155", tickfont=dict(color="#CBD5E1"))
+            fig_bar.update_traces(textfont=dict(color="#FFFFFF", size=13))
             st.plotly_chart(fig_bar, use_container_width=True)
 
         # Dataset Inspection Table
@@ -666,7 +810,7 @@ elif nav_option == "🔍 Failure Prediction":
                 f"""
                 <div class="metric-card">
                     <div class="metric-title">Predicted State</div>
-                    <div class="metric-value" style="color: {'#DC2626' if pred_class == 1 else '#16A34A'}">
+                    <div class="metric-value" style="color: {'#EF4444' if pred_class == 1 else '#10B981'}">
                         {"⚠️ FAILURE RISK" if pred_class == 1 else "✅ HEALTHY"}
                     </div>
                     <div class="metric-sub">Binary Class Output: {pred_class}</div>
@@ -701,14 +845,14 @@ elif nav_option == "🔍 Failure Prediction":
                 unsafe_allow_html=True,
             )
 
-        # Actionable Next Steps & Explanations
+        # Actionable Next Steps & Explanations with high contrast
         st.markdown(
             f"""
-            <div style="border-left: 5px solid {recommendation['color']}; background:#FFFFFF; padding:1.2rem; border-radius:8px; margin-bottom:1rem; border:1px solid #E2E8F0;">
-                <div style="font-weight:700; color:{recommendation['color']}; font-size:1.05rem;">
+            <div class="action-box" style="border-left: 5px solid {recommendation['border_color']} !important;">
+                <div style="font-weight:700; color:{recommendation['color']}; font-size:1.05rem; letter-spacing:0.02em;">
                     RECOMMENDED OPERATIONAL ACTION: {recommendation['action']}
                 </div>
-                <div style="color:#334155; margin-top:0.4rem; font-size:0.95rem;">
+                <div style="color:#F1F5F9; margin-top:0.5rem; font-size:0.95rem; line-height:1.5;">
                     {recommendation['detail']}
                 </div>
             </div>
@@ -720,7 +864,7 @@ elif nav_option == "🔍 Failure Prediction":
         with exp_col1:
             st.markdown("#### 📝 Mechanical Contributing Factors")
             for reason in explanations:
-                st.markdown(f"- {reason}")
+                st.markdown(f"- <span style='color:#F1F5F9;'>{reason}</span>", unsafe_allow_html=True)
             st.caption(
                 "Thresholds based on AI4I physical failure modes: Tool Wear Failure (TWF), "
                 "Heat Dissipation Failure (HDF), Power Failure (PWF), and Overstrain Failure (OSF)."
@@ -742,13 +886,14 @@ elif nav_option == "🔍 Failure Prediction":
                 color_continuous_scale="Blues",
             )
             fig_imp.update_layout(
-                yaxis=dict(autorange="reversed"),
-                plot_bgcolor="#FFFFFF",
-                paper_bgcolor="#FFFFFF",
+                **PLOTLY_DARK_THEME,
+                yaxis=dict(autorange="reversed", gridcolor="#233554", tickfont=dict(color="#E2E8F0")),
+                xaxis=dict(gridcolor="#233554", tickfont=dict(color="#CBD5E1")),
                 coloraxis_showscale=False,
                 margin=dict(l=10, r=10, t=10, b=10),
-                height=240,
+                height=250,
             )
+            fig_imp.update_traces(marker_line_color="#60A5FA", marker_line_width=1)
             st.plotly_chart(fig_imp, use_container_width=True)
             st.caption("Note: Chart depicts global feature importance across the entire training dataset.")
 
@@ -899,12 +1044,12 @@ elif nav_option == "🔬 Machine Scenario Lab":
         with comp_col1:
             st.markdown(
                 f"""
-                <div class="metric-card" style="border-top: 4px solid #64748B;">
+                <div class="metric-card" style="border-top: 4px solid #94A3B8 !important;">
                     <div class="metric-title">Baseline Configuration</div>
                     <div class="metric-value">{b_prob * 100.0:.1f}%</div>
-                    <div class="metric-sub"><span class="{b_badge}">{b_risk} RISK</span></div>
-                    <hr style="margin: 0.8rem 0; border:0; border-top:1px solid #E2E8F0;">
-                    <div style="font-size:0.85rem; color:#475569; line-height:1.7;">
+                    <div class="metric-sub" style="margin-top:0.4rem; margin-bottom:0.6rem;"><span class="{b_badge}">{b_risk} RISK</span></div>
+                    <hr style="margin: 0.8rem 0; border:0; border-top:1px solid #233554 !important;">
+                    <div class="scenario-list">
                         • <b>Tool Wear:</b> {baseline['Tool wear [min]']} min<br>
                         • <b>Torque:</b> {baseline['Torque [Nm]']} Nm<br>
                         • <b>Speed:</b> {baseline['Rotational speed [rpm]']} rpm<br>
@@ -920,12 +1065,12 @@ elif nav_option == "🔬 Machine Scenario Lab":
         with comp_col2:
             st.markdown(
                 f"""
-                <div class="metric-card" style="border-top: 4px solid #2563EB;">
+                <div class="metric-card" style="border-top: 4px solid #38BDF8 !important;">
                     <div class="metric-title">Modified Scenario Twin</div>
                     <div class="metric-value">{s_prob * 100.0:.1f}%</div>
-                    <div class="metric-sub"><span class="{s_badge}">{s_risk} RISK</span></div>
-                    <hr style="margin: 0.8rem 0; border:0; border-top:1px solid #E2E8F0;">
-                    <div style="font-size:0.85rem; color:#475569; line-height:1.7;">
+                    <div class="metric-sub" style="margin-top:0.4rem; margin-bottom:0.6rem;"><span class="{s_badge}">{s_risk} RISK</span></div>
+                    <hr style="margin: 0.8rem 0; border:0; border-top:1px solid #233554 !important;">
+                    <div class="scenario-list">
                         • <b>Tool Wear:</b> {scenario['Tool wear [min]']} min<br>
                         • <b>Torque:</b> {scenario['Torque [Nm]']} Nm<br>
                         • <b>Speed:</b> {scenario['Rotational speed [rpm]']} rpm<br>
@@ -939,18 +1084,18 @@ elif nav_option == "🔬 Machine Scenario Lab":
             )
 
         with comp_col3:
-            delta_color = "#16A34A" if prob_delta < 0 else ("#DC2626" if prob_delta > 0 else "#64748B")
+            delta_color = "#34D399" if prob_delta < 0 else ("#F87171" if prob_delta > 0 else "#94A3B8")
             delta_icon = "📉" if prob_delta < 0 else ("📈" if prob_delta > 0 else "➖")
             st.markdown(
                 f"""
-                <div class="metric-card" style="border-top: 4px solid {delta_color};">
+                <div class="metric-card" style="border-top: 4px solid {delta_color} !important;">
                     <div class="metric-title">Net Risk Impact</div>
-                    <div class="metric-value" style="color: {delta_color};">
+                    <div class="metric-value" style="color: {delta_color} !important;">
                         {delta_icon} {prob_delta:+.1f}%
                     </div>
                     <div class="metric-sub">Shift in Predicted Failure Risk</div>
-                    <hr style="margin: 0.8rem 0; border:0; border-top:1px solid #E2E8F0;">
-                    <div style="font-size:0.85rem; color:#475569; line-height:1.7;">
+                    <hr style="margin: 0.8rem 0; border:0; border-top:1px solid #233554 !important;">
+                    <div class="scenario-list">
                         • <b>Tool Wear Δ:</b> {scenario['Tool wear [min]'] - baseline['Tool wear [min]']:+d} min<br>
                         • <b>Torque Δ:</b> {scenario['Torque [Nm]'] - baseline['Torque [Nm]']:+.1f} Nm<br>
                         • <b>Speed Δ:</b> {scenario['Rotational speed [rpm]'] - baseline['Rotational speed [rpm]']:+d} rpm<br>
@@ -968,18 +1113,19 @@ elif nav_option == "🔬 Machine Scenario Lab":
                 name="Failure Probability",
                 x=["Baseline Machine", "Scenario Twin"],
                 y=[b_prob * 100.0, s_prob * 100.0],
-                marker_color=["#64748B", "#2563EB"],
+                marker_color=["#64748B", "#38BDF8"],
                 text=[f"{b_prob * 100.0:.1f}%", f"{s_prob * 100.0:.1f}%"],
                 textposition="auto",
+                textfont=dict(color="#FFFFFF", size=13, family="sans-serif"),
             )
         )
         fig_comp.update_layout(
+            **PLOTLY_DARK_THEME,
             title="Failure Probability Shift (Baseline vs. Modified Scenario)",
-            yaxis=dict(title="Probability (%)", range=[0, 100]),
-            plot_bgcolor="#FFFFFF",
-            paper_bgcolor="#FFFFFF",
+            yaxis=dict(title="Probability (%)", range=[0, 100], gridcolor="#233554", tickfont=dict(color="#CBD5E1")),
+            xaxis=dict(gridcolor="#233554", tickfont=dict(color="#CBD5E1")),
             height=280,
-            margin=dict(l=20, r=20, t=40, b=20),
+            margin=dict(l=20, r=20, t=45, b=20),
         )
         st.plotly_chart(fig_comp, use_container_width=True)
 
@@ -1064,7 +1210,7 @@ elif nav_option == "💰 Maintenance Cost ROI":
             f"""
             <div class="metric-card">
                 <div class="metric-title">Reactive Strategy (No PM)</div>
-                <div class="metric-value" style="color:#DC2626;">${expected_loss_reactive:,.2f}</div>
+                <div class="metric-value" style="color:#F87171 !important;">${expected_loss_reactive:,.2f}</div>
                 <div class="metric-sub">Expected Loss from Unplanned Downtime</div>
             </div>
             """,
@@ -1076,7 +1222,7 @@ elif nav_option == "💰 Maintenance Cost ROI":
             f"""
             <div class="metric-card">
                 <div class="metric-title">Proactive Strategy (With PM)</div>
-                <div class="metric-value" style="color:#2563EB;">${expected_loss_preventive:,.2f}</div>
+                <div class="metric-value" style="color:#60A5FA !important;">${expected_loss_preventive:,.2f}</div>
                 <div class="metric-sub">PM Cost (${pm_cost:,.2f}) + Residual Loss (${residual_fail_p * breakdown_cost:,.2f})</div>
             </div>
             """,
@@ -1084,19 +1230,19 @@ elif nav_option == "💰 Maintenance Cost ROI":
         )
 
     with m_col3:
-        savings_color = "#16A34A" if estimated_savings >= 0 else "#DC2626"
+        savings_color = "#34D399" if estimated_savings >= 0 else "#F87171"
         st.markdown(
             f"""
             <div class="metric-card">
                 <div class="metric-title">Net Expected Savings</div>
-                <div class="metric-value" style="color:{savings_color};">${estimated_savings:,.2f}</div>
+                <div class="metric-value" style="color:{savings_color} !important;">${estimated_savings:,.2f}</div>
                 <div class="metric-sub">Estimated ROI: {roi_pct:.1f}% on PM Investment</div>
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-    # Interactive Bar Chart Comparison
+    # Interactive Bar Chart Comparison with Dark Navy Theme
     fig_fin = go.Figure()
     fig_fin.add_trace(
         go.Bar(
@@ -1106,15 +1252,16 @@ elif nav_option == "💰 Maintenance Cost ROI":
             marker_color=["#EF4444", "#3B82F6"],
             text=[f"${expected_loss_reactive:,.2f}", f"${expected_loss_preventive:,.2f}"],
             textposition="auto",
+            textfont=dict(color="#FFFFFF", size=13, family="sans-serif"),
         )
     )
     fig_fin.update_layout(
+        **PLOTLY_DARK_THEME,
         title="Financial Comparison: Expected Operational Cost per Machine",
-        yaxis=dict(title="Cost ($)", tickprefix="$"),
-        plot_bgcolor="#FFFFFF",
-        paper_bgcolor="#FFFFFF",
+        yaxis=dict(title="Cost ($)", tickprefix="$", gridcolor="#233554", tickfont=dict(color="#CBD5E1")),
+        xaxis=dict(gridcolor="#233554", tickfont=dict(color="#CBD5E1")),
         height=320,
-        margin=dict(l=20, r=20, t=40, b=20),
+        margin=dict(l=20, r=20, t=45, b=20),
     )
     st.plotly_chart(fig_fin, use_container_width=True)
 
@@ -1186,7 +1333,7 @@ elif nav_option == "📈 Model Performance":
                 f"""
                 <div class="metric-card">
                     <div class="metric-title">Recall (Sensitivity)</div>
-                    <div class="metric-value" style="color:#2563EB;">{rec * 100.0:.2f}%</div>
+                    <div class="metric-value" style="color:#38BDF8 !important;">{rec * 100.0:.2f}%</div>
                     <div class="metric-sub">True Positives / (TP + FN)</div>
                 </div>
                 """,
@@ -1219,14 +1366,16 @@ elif nav_option == "📈 Model Performance":
                 x=cm_labels,
                 y=cm_labels,
                 text_auto=True,
-                color_continuous_scale="Blues",
+                color_continuous_scale=[[0.0, "#080D1A"], [0.2, "#131E3A"], [0.6, "#1E3A8A"], [1.0, "#3B82F6"]],
             )
             fig_cm.update_layout(
-                plot_bgcolor="#FFFFFF",
-                paper_bgcolor="#FFFFFF",
+                **PLOTLY_DARK_THEME,
                 coloraxis_showscale=False,
                 height=320,
-                margin=dict(l=20, r=20, t=30, b=20),
+                margin=dict(l=20, r=20, t=35, b=20),
+            )
+            fig_cm.update_traces(
+                textfont=dict(color="#FFFFFF", size=14, family="sans-serif")
             )
             st.plotly_chart(fig_cm, use_container_width=True)
 
@@ -1241,16 +1390,19 @@ elif nav_option == "📈 Model Performance":
             st.markdown("#### 🎯 Why Recall Matters in Manufacturing")
             st.markdown(
                 """
-                In industrial manufacturing and predictive maintenance:
-                
-                - **False Positives (FP):** The model flags a healthy machine for inspection. 
-                  *Cost:* A minor 15-minute technician check ($50).
-                - **False Negatives (FN):** The model misses a machine about to fail catastrophically. 
-                  *Cost:* Spindle seizure, line stoppage, broken tooling, and thousands in scrap ($10,000+).
-                
-                Because False Negatives are **100x to 200x more expensive** than False Positives, 
-                our training pipeline uses **class-balanced weighting** (`class_weight='balanced'`) 
-                to prioritize high **Recall (83.8%)**, catching 57 out of 68 actual test failures!
-                """
+                <div style="background-color: #131E3A; border: 1px solid #233554; border-radius: 8px; padding: 1.15rem; color: #F1F5F9; font-size: 0.92rem; line-height: 1.6;">
+                    In industrial manufacturing and predictive maintenance:
+                    <ul style="margin-top: 0.5rem; margin-bottom: 0.5rem; padding-left: 1.25rem;">
+                        <li style="margin-bottom: 0.4rem;"><b style="color: #F8FAFC;">False Positives (FP):</b> The model flags a healthy machine for inspection.<br>
+                        <span style="color: #94A3B8;">Cost:</span> A minor 15-minute technician check ($50).</li>
+                        <li><b style="color: #F8FAFC;">False Negatives (FN):</b> The model misses a machine about to fail catastrophically.<br>
+                        <span style="color: #94A3B8;">Cost:</span> Spindle seizure, line stoppage, broken tooling, and thousands in scrap ($10,000+).</li>
+                    </ul>
+                    Because False Negatives are <b style="color: #FCA5A5;">100x to 200x more expensive</b> than False Positives, 
+                    our training pipeline uses <b style="color: #38BDF8;">class-balanced weighting</b> (<code style="color: #38BDF8; background: #0B132B; padding: 2px 6px; border-radius: 4px;">class_weight='balanced'</code>) 
+                    to prioritize high <b style="color: #38BDF8;">Recall (83.8%)</b>, catching 57 out of 68 actual test failures!
+                </div>
+                """,
+                unsafe_allow_html=True,
             )
             st.info(f"Test Set Evaluation Size: **{test_sz:,} records** ({test_fails} actual failures).")
